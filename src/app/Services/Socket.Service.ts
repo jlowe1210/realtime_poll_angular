@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-const socket = io('http://localhost:3000', {
+const socket = io('/', {
   withCredentials: true,
   reconnection: true,
 });
@@ -19,8 +19,8 @@ export class SocketService {
       this.updatedPoll.next({ poll: updatedPoll });
     });
 
-    socket.on('reconnect', () => {
-      socket.emit('reconnecting');
+    socket.on('reconnecting', () => {
+      socket.emit('reconnect');
     });
   }
 
