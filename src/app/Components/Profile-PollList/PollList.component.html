@@ -1,0 +1,41 @@
+<h1 *ngIf="!this.list?.length; else hasPolls">No Polls</h1>
+
+<ng-template #hasPolls>
+  <table id="customers">
+    <tr>
+      <th>POLL NAME</th>
+      <th>URL</th>
+      <th>SHARE</th>
+    </tr>
+    <tr *ngFor="let poll of this.list">
+      <td>{{ poll.name }}</td>
+      <td>
+        <p><a target="_blank" [href]="poll.url">Poll Link</a></p>
+      </td>
+      <td>
+        <a
+          target="_blank"
+          [href]="this.generateTwitterShare(poll.url, poll.name)"
+        >
+          <img
+            src="../../../assets//images/twitter.png"
+            alt="twitter logo"
+            width="20"
+            height="20"
+          />
+        </a>
+        <a
+          target="_blank"
+          [href]="this.generateFacebookShare(poll.url, poll.name)"
+        >
+          <img
+            src="../../../assets/images/facebook.png"
+            alt="facebook logo"
+            width="20"
+            height="20"
+          />
+        </a>
+      </td>
+    </tr>
+  </table>
+</ng-template>

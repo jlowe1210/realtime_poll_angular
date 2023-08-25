@@ -1,0 +1,10 @@
+<div class="filter_search_container">
+  <input
+    placeholder="Poll Search"
+    class="filter_search"
+    name="filter"
+    type="text"
+    [ngModel]="filter"
+    (ngModelChange)="this.filterChange($event)"
+  />
+</div>

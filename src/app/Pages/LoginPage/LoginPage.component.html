@@ -1,0 +1,28 @@
+<div class="formcontainer">
+  <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+    <ng-container *ngIf="errorMessage">
+      <p class="response_error">Invalid username or password</p>
+    </ng-container>
+    <input type="text" placeholder="Username" formControlName="username" />
+    <input type="password" placeholder="Password" formControlName="password" />
+
+    <button
+      [disabled]="!loginForm.valid || loadingReponse === true"
+      class="submit_btn"
+      type="submit"
+    >
+      {{ loadingReponse ? "Logging in" : "Login" }}
+    </button>
+    <p [ngStyle]="{ 'text-align': 'right' }">forgot password?</p>
+    <p>
+      Don't have a account?
+      <span
+        [ngStyle]="{ 'text-decoration': 'underline', 'font-weight': 'bold' }"
+      >
+        <a [ngStyle]="{ color: '#dd0031' }" [routerLink]="['/signup']"
+          >Sign up!</a
+        >
+      </span>
+    </p>
+  </form>
+</div>

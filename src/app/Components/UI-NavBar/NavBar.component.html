@@ -1,0 +1,34 @@
+<ng-container *ngIf="{ user: user$ | async } as vm">
+  <div class="navbar_container">
+    <Container>
+      <div class="navbar">
+        <div class="logo" (click)="router.navigateByUrl('/')">
+          <img
+            src="../../../assets/images/logoangular.png"
+            width="35"
+            height="35"
+          />
+          <p class="logo_text">iiPoll</p>
+        </div>
+        <div class="signin_links" *ngIf="!vm.user">
+          <a class="login_btn" [routerLink]="['/login']">Log in</a>
+          <a class="signup_btn" [routerLink]="['/signup']">Sign up</a>
+        </div>
+        <div
+          *ngIf="vm.user"
+          [ngStyle]="{ 'align-self': 'center', position: 'relative' }"
+          (click)="this.showDropDown = !this.showDropDown"
+        >
+          <p
+            id="dropdown"
+            class="user"
+            [ngStyle]="{ cursor: 'pointer', 'font-size': '22px' }"
+          >
+            {{ vm.user.username }}
+          </p>
+          <DropDown *ngIf="showDropDown"></DropDown>
+        </div>
+      </div>
+    </Container>
+  </div>
+</ng-container>

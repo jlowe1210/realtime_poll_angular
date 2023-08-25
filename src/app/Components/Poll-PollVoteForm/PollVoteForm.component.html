@@ -1,0 +1,23 @@
+<form #voteForm="ngForm" (submit)="handleVote(voteForm)">
+  <div *ngFor="let option of pollOptions">
+    <input
+      type="radio"
+      name="option"
+      [id]="option.option"
+      [value]="option.id"
+      ngModel
+      [(ngModel)]="selectedOption"
+      required
+    />
+
+    <label [for]="option.option">{{ option.option }}</label>
+    <br />
+  </div>
+  <button
+    [disabled]="!this.selectedOption || this.loading"
+    type="submit"
+    class="vote_btn"
+  >
+    {{ this.loading ? "Casting vote" : "Cast vote" }}
+  </button>
+</form>

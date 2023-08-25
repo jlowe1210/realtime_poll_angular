@@ -1,0 +1,4 @@
+<h1>Results</h1>
+<div *ngFor="let result of pollResults | async">
+  <h3>{{ result[0] }} {{ result[1] }}</h3>
+</div>

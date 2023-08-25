@@ -1,0 +1,9 @@
+<div class="poll_time_and_expire_container">
+  <div *ngIf="didPollExpire; else pollDidntExpire">
+    <h1>Poll Expired</h1>
+  </div>
+
+  <ng-template #pollDidntExpire>
+    <h1>{{ formatTime(secondsLeft) }} Time left</h1>
+  </ng-template>
+</div>

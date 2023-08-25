@@ -1,0 +1,40 @@
+.svg {
+  transform-origin: center center;
+  transform: scale(-1, 1);
+  width: 39.9%;
+  height: auto;
+  align-self: flex-end;
+}
+.steps {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.step {
+  max-width: 310px;
+  width: 100%;
+  text-align: center;
+}
+
+.step img {
+  height: 100px;
+}
+
+.step h2 {
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+.create_poll_btn {
+  background-color: #dd0031;
+  padding: 10px 15px;
+  color: #fcf6f5;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.create_poll_btn:hover {
+  background-color: #6e0018;
+}

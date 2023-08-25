@@ -1,0 +1,54 @@
+<div class="formcontainer">
+  <form [formGroup]="pollCreateForm" (ngSubmit)="handleSubmit()">
+    <div *ngIf="this.error">
+      <p class="response_error">Unable to create Poll,{{ this.error }}</p>
+    </div>
+    <div *ngIf="this.response">
+      <p>Poll Created</p>
+      <p>Link <a target="_blank" [href]="this.response.poll.url">to Poll</a></p>
+    </div>
+    <p *ngIf="this.formOptions.length < 2" class="response_error">
+      Poll Must have atleast two options
+    </p>
+    <input type="text" placeholder="Poll title" formControlName="name" />
+    <ul formArrayName="options">
+      <ng-container
+        *ngFor="let option of this.formOptions.controls; let i = index"
+      >
+        <li [formGroupName]="i" class="option_container">
+          <input
+            class="option_input"
+            [placeholder]="i"
+            formControlName="option"
+            [placeholder]="optionInputPlaceholder(i)"
+          />
+          <p class="option_btn" (click)="removeOption(i)">X</p>
+        </li>
+      </ng-container>
+    </ul>
+    <div class="add_option_btn_container">
+      <p class="add_option_btn" (click)="addOption()">Add Option+</p>
+    </div>
+    <div class="duration_container">
+      <input
+        min="1"
+        max="100"
+        type="number"
+        class="duration_time"
+        formControlName="duration_time"
+      />
+      <select class="duration_mins_or_hours" formControlName="duration_option">
+        <option value="minutes">minutes</option>
+        <option value="hours">hours</option>
+      </select>
+    </div>
+    <input
+      [disabled]="
+        this.pollCreateForm.status === 'INVALID' || this.formOptions.length < 2
+      "
+      class="formcontainer_submit_btn"
+      type="submit"
+      [value]="this.loading ? 'Creating Poll' : 'Create Poll'"
+    />
+  </form>
+</div>

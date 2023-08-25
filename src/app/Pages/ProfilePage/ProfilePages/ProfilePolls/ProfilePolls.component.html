@@ -1,0 +1,4 @@
+<ng-container *ngIf="profile$ | async as profile">
+  <PollFilter></PollFilter>
+  <PollList [list]="filterPollList | async"></PollList>
+</ng-container>

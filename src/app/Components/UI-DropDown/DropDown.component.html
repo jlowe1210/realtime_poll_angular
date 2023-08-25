@@ -1,0 +1,16 @@
+<div class="dropdown_container" id="test">
+  <ul>
+    <li
+      (click)="this.router.navigateByUrl('/profile')"
+      [ngStyle]="{ 'margin-left': '-3px', 'margin-bottom': '15px' }"
+    >
+      <img src="../../../assets/images/home.png" width="{15}" height="{15}" />
+      <p>Dashboard</p>
+    </li>
+
+    <li (click)="authService.logout()">
+      <img src="../../../assets/images/exit.png" width="{15}" height="{15}" />
+      <p>Sign out</p>
+    </li>
+  </ul>
+</div>

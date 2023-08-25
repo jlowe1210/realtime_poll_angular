@@ -1,0 +1,10 @@
+.poll_title {
+  text-align: center;
+  font-style: italic;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.poll_author {
+  text-align: center;
+}

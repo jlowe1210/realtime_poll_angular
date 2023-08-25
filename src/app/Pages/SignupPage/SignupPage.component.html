@@ -1,0 +1,78 @@
+<div class="formcontainer">
+  <form [formGroup]="signupForm" (ngSubmit)="handlesubmit()">
+    <input type="text" placeholder="Username" formControlName="username" />
+
+    <ng-container *ngIf="username?.errors?.['required'] && username?.dirty">
+      <p class="client_error">Username is required</p>
+    </ng-container>
+
+    <ng-container *ngIf="username?.errors?.['server'] && username?.dirty">
+      <p class="client_error">{{username?.errors?.['server'].message}}</p>
+    </ng-container>
+
+    <input type="email" placeholder="Email" formControlName="email" />
+
+    <ng-container *ngIf="email?.errors?.['required'] && email?.dirty">
+      <p class="client_error">Email is required</p>
+    </ng-container>
+
+    <ng-container *ngIf="email?.errors?.['server'] && email?.dirty">
+      <p class="client_error">{{email?.errors?.['server'].message}}</p>
+    </ng-container>
+
+    <ng-container *ngIf="email?.errors?.['pattern'] && email?.dirty">
+      <p class="client_error">Invalid Email</p>
+    </ng-container>
+
+    <input placeholder="Password" type="password" formControlName="password" />
+
+    <ng-container *ngIf="password?.errors?.['required'] && password?.dirty">
+      <p class="client_error">Password is required</p>
+    </ng-container>
+
+    <ng-container *ngIf="password?.errors?.['server'] && password?.dirty">
+      <p class="client_error">{{password?.errors?.['server'].message}}</p>
+    </ng-container>
+
+    <ng-container *ngIf="password?.errors?.['minlength'] && password?.dirty">
+      <p class="client_error">Password must be atleast 7 characters</p>
+    </ng-container>
+
+    <input
+      type="password"
+      placeholder="Confirm password"
+      formControlName="confirmPassword"
+    />
+    <ng-container
+      *ngIf="confirmPassword?.errors?.['required'] && confirmPassword?.dirty"
+    >
+      <p class="client_error">confirm password is required</p>
+    </ng-container>
+
+    <ng-container
+      *ngIf="confirmPassword?.errors?.['server'] && confirmPassword?.dirty"
+    >
+      <p class="client_error">
+        {{confirmPassword?.errors?.['server'].message}}
+      </p>
+    </ng-container>
+
+    <ng-container
+      *ngIf="signupForm?.errors?.['notmatched'] && confirmPassword?.dirty && confirmPassword?.value"
+    >
+      <p class="client_error">Passwords must match</p>
+    </ng-container>
+
+    <button
+      [disabled]="!signupForm.valid || loadingReponse === true"
+      class="submit_btn"
+      type="submit"
+    >
+      {{ loadingReponse ? "Signing up" : "Sign up" }}
+    </button>
+    <p>
+      Already have an account?
+      <a [ngStyle]="{ color: '#dd0031' }" [routerLink]="['/login']">Log in!</a>
+    </p>
+  </form>
+</div>

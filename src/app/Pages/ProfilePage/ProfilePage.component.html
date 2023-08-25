@@ -1,0 +1,15 @@
+<ng-container
+  *ngIf="{
+    isLoggedIn: this.isUserLoggedIn | async,
+    profile: this.userProfile$ | async
+  } as vm"
+>
+  <ng-container *ngIf="vm.profile; else loading">
+    <Profile-NavBar></Profile-NavBar>
+    <router-outlet></router-outlet>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  <h1 class="profilepage_loader">Loading Profile</h1>
+</ng-template>

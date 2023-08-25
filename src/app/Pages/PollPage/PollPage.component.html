@@ -1,0 +1,25 @@
+<div class="container">
+  <ng-container *ngIf="(poll | async)?.poll as pollObs">
+    <div *ngIf="pollObs && !isLoadingPoll">
+      <Poll-Chart [poll]="pollObs"></Poll-Chart>
+      <PollVoteForm
+        *ngIf="!didPollExpire"
+        [pollId]="pollObs.id"
+        [pollOptions]="pollObs.Polloptions"
+      ></PollVoteForm>
+      <PollResults [poll]="pollObs" *ngIf="didPollExpire"></PollResults>
+      <Count-down
+        (setPollExpire)="handleDidPollExpire($event)"
+        [tillExpire]="pollObs.tillExpire"
+      ></Count-down>
+    </div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="!isLoadingPoll && pollError">
+  <h1 class="poll_status">Poll Not Found</h1>
+</ng-container>
+
+<ng-container *ngIf="isLoadingPoll">
+  <h1 class="poll_status">Loading Poll</h1>
+</ng-container>

@@ -1,0 +1,43 @@
+<div
+  [ngStyle]="{
+    width: '100%',
+    'border-bottom': '.1px solid #cacaca',
+    'margin-top': '25px'
+  }"
+>
+  <Container>
+    <div [ngStyle]="{ display: 'flex', 'justify-content': 'space-between' }">
+      <div [ngStyle]="{ 'align-self': 'center', 'text-align': 'center' }">
+        <h1 [ngStyle]="{ 'text-align': 'center', 'font-size': '25px' }">
+          CREATE YOUR POLL IN SECONDS
+        </h1>
+        <p [ngStyle]="{ 'text-align': 'center', 'line-height': '30px' }">
+          Creating polls is a great way to gather opinions and insights from a
+          group of people. With just a few clicks, you can create a poll and
+          share it with your friends and followers.
+        </p>
+        <button
+          (click)="this.router.navigateByUrl('/profile/create')"
+          class="create_poll_btn"
+        >
+          CREATE A POLL
+        </button>
+      </div>
+      <img
+        class="svg"
+        src="../../../assets/images/piechartangular.svg"
+        height="400"
+      />
+    </div>
+  </Container>
+</div>
+<h1 [ngStyle]="{ 'text-align': 'center', margin: '20px 0' }">How it works</h1>
+<Container>
+  <div class="steps">
+    <div class="step" *ngFor="let step of steps">
+      <h2>{{ step.title }}</h2>
+      <img [src]="step.imgSrc" width="120" />
+      <p>{{ step.desc }}</p>
+    </div>
+  </div>
+</Container>
