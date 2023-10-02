@@ -9,6 +9,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './Pages/HomePage/HomePage.component';
 import { DropDownComponent } from './Components/UI-DropDown/DropDown.component';
 import { AuthGaurdService } from './Services/AuthGuard.service';
+import { io } from 'socket.io-client';
+
+export const socket = io('/', {
+  withCredentials: true,
+  reconnection: true,
+});
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },

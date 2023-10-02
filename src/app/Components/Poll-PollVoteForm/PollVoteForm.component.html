@@ -14,7 +14,11 @@
     <br />
   </div>
   <button
-    [disabled]="!this.selectedOption || this.loading"
+    [disabled]="
+      !this.selectedOption ||
+      this.loading ||
+      this.sameSelectedOption === this.selectedOption
+    "
     type="submit"
     class="vote_btn"
   >

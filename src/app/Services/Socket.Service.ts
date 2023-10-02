@@ -1,10 +1,6 @@
-import { io } from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-const socket = io('/', {
-  withCredentials: true,
-  reconnection: true,
-});
+import { socket } from '../app.module';
 
 @Injectable({ providedIn: 'root' })
 export class SocketService {
@@ -18,9 +14,21 @@ export class SocketService {
     socket.on('updatedPoll', (updatedPoll) => {
       this.updatedPoll.next({ poll: updatedPoll });
     });
+  }
 
-    socket.on('reconnecting', () => {
-      socket.emit('reconnect');
+  public handleDisconnect() {
+    let currentSocket: any;
+
+    socket.on('connect', () => {
+      currentSocket = socket.id;
+    });
+
+    socket.io.on('reconnect', () => {
+      socket.emit('getLostData', currentSocket);
+    });
+
+    socket.on('disconnect', () => {
+      socket.emit('Disconnecting', currentSocket);
     });
   }
 

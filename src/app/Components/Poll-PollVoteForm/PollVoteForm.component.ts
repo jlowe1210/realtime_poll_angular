@@ -12,6 +12,7 @@ export class PollVoteFormComponent implements OnInit {
   @Input() pollId!: string;
   @Input() pollOptions!: Polloption[];
   public selectedOption: string = '';
+  public sameSelectedOption!: string;
 
   public loading: boolean = false;
 
@@ -20,6 +21,7 @@ export class PollVoteFormComponent implements OnInit {
   ngOnInit(): void {}
 
   public handleVote(form: NgForm) {
+    this.sameSelectedOption = this.selectedOption;
     this.loading = true;
     this.pollService
       .pollVote(this.pollId, form.value.option)

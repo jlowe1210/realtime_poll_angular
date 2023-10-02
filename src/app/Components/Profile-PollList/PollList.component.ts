@@ -11,9 +11,7 @@ export class PollListComponent implements OnInit {
   @Input() list!: Poll[] | undefined | null;
 
   constructor(private ref: ChangeDetectorRef) {}
-  ngOnInit(): void {
-    console.log(this.list);
-  }
+  ngOnInit(): void {}
 
   public generateTwitterShare(url: string, pollName: string) {
     return `https://twitter.com/intent/tweet?url=${url}&text=${pollName} Poll at`;

@@ -59,19 +59,34 @@ export class ChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['poll'].firstChange) {
-      console.log(changes['poll']);
       const PollData = this.getPollChartData(changes['poll'].currentValue);
 
-      const data = {
-        labels: Object.keys(PollData),
-        datasets: [
-          {
-            data: Object.values(PollData),
-            backgroundColor: this.randomPollColors,
-            borderWidth: 1,
-          },
-        ],
-      };
+      let data;
+
+      if (this.doesPollHaveVotes(changes['poll'].currentValue)) {
+        data = {
+          labels: Object.keys(PollData),
+          datasets: [
+            {
+              data: Object.values(PollData),
+              backgroundColor: this.randomPollColors,
+              borderWidth: 1,
+            },
+          ],
+        };
+      } else {
+        data = {
+          labels: ['No votes yet'],
+          datasets: [
+            {
+              label: 'No data',
+              backgroundColor: ['#D3D3D3'],
+              data: [1],
+            },
+          ],
+        };
+      }
+
       this.pieChart.data = data;
       this.pieChart.update();
     }
